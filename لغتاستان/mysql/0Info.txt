@@ -1,0 +1,71 @@
+# راهنمای استفاده از Word Manager
+
+## فایل‌های موردنیاز:
+- `word_manager.py` - مدیریت اضافه کردن کلمات
+- `randreader.py` - خواندن تصادفی کلمات
+
+## 1. اضافه کردن کلمه:
+
+```python
+from word_manager import add_word_to_file
+
+# اضافه کردن یک کلمه
+result = add_word_to_file("سلام")
+print(result['message'])
+
+# اضافه کردن چند کلمه
+words = ["کلمه1", "کلمه2", "کلمه3"]
+for word in words:
+    add_word_to_file(word)
+```
+
+## 2. خواندن کلمه تصادفی:
+
+```python
+from randreader import get_random_word
+
+# دریافت کلمه تصادفی
+result = get_random_word()
+if result['success']:
+    print(f"کلمه: {result['word']}")
+    print(f"فایل: {result['filename']}")
+else:
+    print(f"خطا: {result['error']}")
+```
+
+## 3. مثال کامل:
+
+```python
+from word_manager import add_word_to_file
+from randreader import get_random_word
+
+# اضافه کردن کلمات
+words = ["پایتون", "برنامه‌نویسی", "کد"]
+for word in words:
+    add_word_to_file(word)
+
+# خواندن 3 کلمه تصادفی
+for i in range(3):
+    result = get_random_word()
+    if result['success']:
+        print(f"{i+1}. {result['word']}")
+```
+
+## 4. بررسی وضعیت:
+
+```python
+# بررسی پر شدن فایل
+result = add_word_to_file("کلمه")
+if result['file_full']:
+    print("فایل پر شد!")
+
+# اطلاعات کلمه تصادفی
+result = get_random_word()
+if result['success']:
+    print(f"خط {result['line_number']} از {result['total_lines']}")
+```
+
+## نکات:
+- هر فایل حداکثر 40 خط دارد
+- فایل‌ها خودکار شماره‌گذاری می‌شوند (1.txt, 2.txt, ...)
+- کدگذاری UTF-8 برای پشتیبانی از فارسی

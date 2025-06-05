@@ -1,0 +1,4 @@
+سیم (SIEM - Security Information and Event Management)
+لاگ آنالیز (Log analysis)
+فارنزیک (Forensics - digital)
+اینسیدنت ریسپانس (Incident response)
